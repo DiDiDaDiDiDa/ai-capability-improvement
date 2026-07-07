@@ -1,6 +1,10 @@
 # System files
 .DS_Store
 
+# TophantAI / local agent config (internal, not published)
+.claude/
+CLAUDE.md
+
 # Editor files
 .idea/
 .vscode/
