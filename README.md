@@ -1,5 +1,12 @@
 # AI Capability Improvement
 
+> 从 Token 到 Coding Agent —— 一份面向 AI Infra / LLM 应用工程的实战学习仓库。
+> 理论够用即可，动手写代码为主，用项目倒逼补盲。
+
+![topic](https://img.shields.io/badge/topic-LLM%20Engineering-blue)
+![topic](https://img.shields.io/badge/focus-AI%20Infra-green)
+![license](https://img.shields.io/github/license/DiDiDaDiDiDa/ai-capability-improvement)
+
 面向 **AI Infra / LLM 应用工程** 方向的系统学习仓库，用于沉淀学习笔记、架构图、提示词模板、评测样例和实战项目。
 
 目标不是"了解 AI 是什么"，而是能在工程一线动手做：把 Token、Embedding、Transformer、RAG、Agent、Serving、Gateway 这些天天要碰的东西讲清楚、写出来、跑起来。
@@ -18,7 +25,6 @@
 | 05 | 模型微调与量化评估 | [`docs/05-finetune-eval`](docs/05-finetune-eval/) | LoRA/QLoRA、SFT/DPO、BLEU/ROUGE、LLM Judge |
 | 06 | AI Infra 与服务化 | [`docs/06-ai-infra`](docs/06-ai-infra/) | Serving、Gateway、Cache、Router、多 Provider |
 
-> 模块 06 是在你原始 5 个模块基础上补充的。ChatGPT 的建议里把 AI Infra（Serving/Gateway/Cache）单列，这块是 AI Infra 岗位最核心的工程内容，也和你手上的 Gateway 项目直接相关，所以独立成模块。
 
 ## 实战项目（倒逼学习）
 

@@ -140,10 +140,10 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 
 详见各项目目录，此处只列时间与定位。
 
-| 项目 | 时间 | 何时启动 | 目录 |
-|------|------|----------|------|
-| P1 企业级 RAG 平台 | ~20h | 学到第三阶段时 | [`projects/p1-enterprise-rag`](projects/p1-enterprise-rag/) |
-| P2 AI Gateway 增强版 | ~15h | 学到第六阶段时 | [`projects/p2-ai-gateway`](projects/p2-ai-gateway/) |
+| 项目                   | 时间   | 何时启动    | 目录                                                                |
+| -------------------- | ---- | ------- | ----------------------------------------------------------------- |
+| P1 企业级 RAG 平台        | ~20h | 学到第三阶段时 | [`projects/p1-enterprise-rag`](projects/p1-enterprise-rag/)       |
+| P2 AI Gateway 增强版    | ~15h | 学到第六阶段时 | [`projects/p2-ai-gateway`](projects/p2-ai-gateway/)               |
 | P3 Mini Coding Agent | ~25h | 学到第四阶段后 | [`projects/p3-mini-coding-agent`](projects/p3-mini-coding-agent/) |
 
 ---
@@ -160,16 +160,16 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 
 建议在此维护一个简单进度表（学到哪算哪）：
 
-| 模块 / 项目 | 状态 | 起止 | 备注 |
-|------------|------|------|------|
-| 01 基础 | ⬜ 未开始 | | |
-| 02 提示词 | ⬜ 未开始 | | |
-| 03 RAG | ⬜ 未开始 | | |
-| 04 Agent | ⬜ 未开始 | | |
-| 05 微调评估 | ⬜ 未开始 | | |
-| 06 AI Infra | ⬜ 未开始 | | |
-| P1 RAG 平台 | ⬜ 未开始 | | |
-| P2 Gateway | ⬜ 未开始 | | |
-| P3 Coding Agent | ⬜ 未开始 | | |
+| 模块 / 项目         | 状态    | 起止  | 备注  |
+| --------------- | ----- | --- | --- |
+| 01 基础           | 🟡 进行中 | 2026-07-07 起 |     |
+| 02 提示词          | ⬜ 未开始 |     |     |
+| 03 RAG          | ⬜ 未开始 |     |     |
+| 04 Agent        | ⬜ 未开始 |     |     |
+| 05 微调评估         | ⬜ 未开始 |     |     |
+| 06 AI Infra     | ⬜ 未开始 |     |     |
+| P1 RAG 平台       | ⬜ 未开始 |     |     |
+| P2 Gateway      | ⬜ 未开始 |     |     |
+| P3 Coding Agent | ⬜ 未开始 |     |     |
 
 状态标记：⬜ 未开始 / 🟡 进行中 / ✅ 完成
