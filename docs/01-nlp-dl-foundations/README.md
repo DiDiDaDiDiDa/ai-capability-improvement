@@ -52,7 +52,8 @@
 ## 建议产出物
 
 - [ ] 一张手绘/画图工具画的完整 Transformer 结构图（放 `docs/01-nlp-dl-foundations/`）
-- [ ] 手写最小 BPE：训练 + 编码（`experiments/`）
+- [x] 手写最小 BPE：训练 + 编码（`experiments/tokenizer-bpe/mini_bpe.py`）
+- [x] tiktoken 实跑：中英文 token 数对比（`experiments/tokenizer-bpe/demo_tiktoken.py`）
 - [ ] 手写单头 self-attention（numpy 即可）
 - [ ] 采样参数对比实验：同 prompt 不同 temperature/top_p 的输出
 
