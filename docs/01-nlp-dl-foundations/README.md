@@ -51,11 +51,11 @@
 
 ## 建议产出物
 
-- [ ] 一张手绘/画图工具画的完整 Transformer 结构图（放 `docs/01-nlp-dl-foundations/`）
+- [x] 完整 Transformer 结构图（ASCII，见 `transformer.md`）
 - [x] 手写最小 BPE：训练 + 编码（`experiments/tokenizer-bpe/mini_bpe.py`）
 - [x] tiktoken 实跑：中英文 token 数对比（`experiments/tokenizer-bpe/demo_tiktoken.py`）
 - [x] 迷你语义检索：embedding 建库 + cosine 检索（`experiments/mini-semantic-search/mini_search.py`）
-- [ ] 手写单头 self-attention（numpy 即可）
+- [x] 手写单头 self-attention（`experiments/self-attention/single_head.py`）
 - [ ] 采样参数对比实验：同 prompt 不同 temperature/top_p 的输出
 
 ## 面试高频题（出口自测）
