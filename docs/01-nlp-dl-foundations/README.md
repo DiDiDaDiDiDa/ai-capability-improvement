@@ -56,7 +56,7 @@
 - [x] tiktoken 实跑：中英文 token 数对比（`experiments/tokenizer-bpe/demo_tiktoken.py`）
 - [x] 迷你语义检索：embedding 建库 + cosine 检索（`experiments/mini-semantic-search/mini_search.py`）
 - [x] 手写单头 self-attention（`experiments/self-attention/single_head.py`）
-- [ ] 采样参数对比实验：同 prompt 不同 temperature/top_p 的输出
+- [x] 采样参数对比实验：temperature/top-k/top-p 挑词差异（`experiments/sampling/sampling_demo.py`）
 
 ## 面试高频题（出口自测）
 
@@ -78,7 +78,7 @@
 
 ## 检查清单
 
-- [ ] 能默画 Transformer 结构图并讲清每个模块作用
-- [ ] 能手写 BPE 和 self-attention
-- [ ] 能讲清 KV Cache 的原理与显存权衡
-- [ ] 能回答上面全部面试题
+- [x] 能默画 Transformer 结构图并讲清每个模块作用
+- [x] 能手写 BPE 和 self-attention
+- [x] 能讲清 KV Cache 的原理与显存权衡
+- [x] 能回答上面全部面试题
