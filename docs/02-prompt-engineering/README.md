@@ -55,7 +55,7 @@ ReAct / Reflection                Long Context 组织
 - [x] 常用提示词模板沉淀到仓库 `prompts/`（intent / extract-json v1+v2 / cot / react / tool-call）
 - [x] 一组 CoT / SC / ToT / ReAct / Reflection 对比样例（`experiments/reasoning-patterns/`，Day6）
 - [x] 结构化输出 / Tool schema / 长上下文位置对比（`experiments/structured-output/`，Day7）
-- [ ] Prompt SDK 完整版：版本管理 / 测试钩子（Day8）
+- [x] Prompt SDK 完整版：Registry / 版本 / 别名 / A/B / Golden 钩子（`experiments/prompt-sdk/`，Day8）
 
 ## 面试高频题（出口自测）
 
@@ -77,5 +77,5 @@ ReAct / Reflection                Long Context 组织
 
 - [x] 能区分并落地 CoT / ToT / ReAct / Reflection（Day6 笔记+实验）
 - [x] 能设计稳定的结构化输出与工具调用 prompt（Day7 笔记+实验）
-- [ ] 写出了可复用的 Prompt SDK
-- [ ] 能回答上面全部面试题
+- [x] 写出了可复用的 Prompt SDK（Day5 Builder + Day8 Registry/Hooks）
+- [x] 能回答上面全部面试题
