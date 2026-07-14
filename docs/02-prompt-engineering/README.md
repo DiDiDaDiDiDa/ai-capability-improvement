@@ -52,8 +52,9 @@ ReAct / Reflection                Long Context 组织
 ## 建议产出物
 
 - [x] 最小 Prompt Builder（Python）：模板渲染、变量注入、few-shot 拼装、版本标记（`experiments/prompt-builder/prompt_builder.py`，Day5）
-- [x] 常用提示词模板沉淀到仓库 `prompts/`（`classify-intent.v1.md` / `extract-json.v1.md`，Day5 起步）
-- [ ] 一组 CoT / ReAct / 结构化输出的对比样例（`experiments/`，Day6~7）
+- [x] 常用提示词模板沉淀到仓库 `prompts/`（`classify-intent.v1.md` / `extract-json.v1.md` / `cot-solve.v1.md` / `react-agent.v1.md`）
+- [x] 一组 CoT / SC / ToT / ReAct / Reflection 对比样例（`experiments/reasoning-patterns/`，Day6）
+- [ ] 结构化输出对比样例（Day7）
 - [ ] Prompt SDK 完整版：版本管理 / 测试钩子（Day8）
 
 ## 面试高频题（出口自测）
@@ -74,7 +75,7 @@ ReAct / Reflection                Long Context 组织
 
 ## 检查清单
 
-- [ ] 能区分并落地 CoT / ToT / ReAct / Reflection
+- [x] 能区分并落地 CoT / ToT / ReAct / Reflection（Day6 笔记+实验）
 - [ ] 能设计稳定的结构化输出与工具调用 prompt
 - [ ] 写出了可复用的 Prompt SDK
 - [ ] 能回答上面全部面试题
