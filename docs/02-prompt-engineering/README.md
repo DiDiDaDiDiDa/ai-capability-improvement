@@ -51,9 +51,10 @@ ReAct / Reflection                Long Context 组织
 
 ## 建议产出物
 
-- [ ] 一个 Prompt SDK / Builder（Go Template 或 Python），支持：模板渲染、变量注入、few-shot 拼装、版本标记
-- [ ] 常用提示词模板沉淀到仓库 `prompts/`
-- [ ] 一组 CoT / ReAct / 结构化输出的对比样例（`experiments/`）
+- [x] 最小 Prompt Builder（Python）：模板渲染、变量注入、few-shot 拼装、版本标记（`experiments/prompt-builder/prompt_builder.py`，Day5）
+- [x] 常用提示词模板沉淀到仓库 `prompts/`（`classify-intent.v1.md` / `extract-json.v1.md`，Day5 起步）
+- [ ] 一组 CoT / ReAct / 结构化输出的对比样例（`experiments/`，Day6~7）
+- [ ] Prompt SDK 完整版：版本管理 / 测试钩子（Day8）
 
 ## 面试高频题（出口自测）
 
