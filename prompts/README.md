@@ -18,6 +18,7 @@
 | `cot-solve.v1.md` | cot-solve | v1 | Zero-shot CoT |
 | `react-agent.v1.md` | react-agent | v1 | 文本 ReAct 工具环 |
 | `tool-call-logistics.v1.md` | tool-call-logistics | v1 | 原生 Tool Calling schema |
+| `rag-grounded.v1.md` | rag-grounded | v1 | RAG 证据分区 + 强制引用（模块 03） |
 
 ## 单条模板建议格式
 

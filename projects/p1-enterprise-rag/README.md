@@ -8,16 +8,16 @@
 
 ## 能力清单
 
-- [ ] 文档导入：PDF / Markdown / Word
-- [ ] Chunk 切分策略：固定长度 / 语义切分 / Parent-Child
-- [ ] Embedding：BGE 或 Qwen Embedding
-- [ ] 向量存储：Milvus 或 pgvector
+- [x] 文档导入：Markdown/TXT 最小加载（L1；PDF/Word 待 M4）
+- [x] Chunk 切分策略：固定长度 + 重叠（L1）；语义 / Parent-Child 待后续
+- [x] Embedding：可插拔接口 + 教学用 n-gram；BGE/Qwen 待换真模型
+- [x] 向量存储：内存暴力库（L1）；pgvector / Milvus 待规模化
 - [ ] Hybrid Search：BM25 + Vector（RRF 融合）
 - [ ] Reranker：BGE-Reranker 精排
 - [ ] Query Rewrite：改写用户提问
-- [ ] Prompt 模板管理（复用模块 02 的 Prompt SDK）
+- [x] Prompt 模板管理（`prompts/rag-grounded.v1.md`；Registry 复用模块 02）
 - [ ] 与 Gateway（P2）集成，通过统一 Provider 调用模型
-- [ ] 答案带来源引用（可溯源）
+- [x] 答案带来源引用（可溯源，`[S#]` + doc#chunk）
 
 ## 目标架构
 

@@ -6,8 +6,9 @@
 
 按模块或项目建子目录，例如：
 - `tokenizer-bpe/`：手写 BPE 实验
-- `sampling-params/`：采样参数对比
-- `rag-hybrid-vs-naive/`：RAG 各层召回质量对比
+- `sampling/`：采样参数对比
+- `naive-rag/`：L1 Naive RAG 全链路（chunk/embed/retrieve/grounded）
+- `rag-hybrid-vs-naive/`：RAG 各层召回质量对比（L2+）
 - `lora-finetune/`：LoRA 微调实验
 
 ## 单个实验建议格式
