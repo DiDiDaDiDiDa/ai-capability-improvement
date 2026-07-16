@@ -8,7 +8,7 @@
 - `tokenizer-bpe/`：手写 BPE 实验
 - `sampling/`：采样参数对比
 - `naive-rag/`：L1 Naive RAG 全链路（chunk/embed/retrieve/grounded）
-- `rag-hybrid-vs-naive/`：RAG 各层召回质量对比（L2+）
+- `rag-hybrid-vs-naive/`：L2 Hybrid（BM25 + Vector + RRF）vs Naive 召回对照
 - `lora-finetune/`：LoRA 微调实验
 
 ## 单个实验建议格式

@@ -92,7 +92,7 @@ user:
 2. **入库**：3 篇假企业文档 → N 个 chunk，每条含 `doc_id/chunk_id/source`
 3. **检索**：问「差旅住宿标准」命中差旅政策块；问「年假怎么算」命中人事块
 4. **拼装**：输出带 `[S1][S2]` 的 grounded messages，`template_id=rag-grounded@v1`
-5. **Naive 失败演示**：纯字面弱相关时，无 BM25 的稠密/n-gram 会漂——为 L2 留对照
+5. **Naive 失败演示**：纯字面弱相关时，无 BM25 的稠密/n-gram 会漂——对照见 L2 `hybrid-search.md`
 
 ## 踩过的坑 / 易混淆点
 
