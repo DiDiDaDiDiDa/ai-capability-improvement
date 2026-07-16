@@ -9,6 +9,7 @@
 - `sampling/`：采样参数对比
 - `naive-rag/`：L1 Naive RAG 全链路（chunk/embed/retrieve/grounded）
 - `rag-hybrid-vs-naive/`：L2 Hybrid（BM25 + Vector + RRF）vs Naive 召回对照
+- `rag-rerank/`：L3 粗召回 + Cross 精排（MRR/Top-1 翻盘，教学 scorer）
 - `lora-finetune/`：LoRA 微调实验
 
 ## 单个实验建议格式

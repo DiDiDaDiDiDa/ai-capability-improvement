@@ -71,7 +71,7 @@ RRF（Reciprocal Rank Fusion）经典形式：
 | -- | -------- | ---------- |
 | L1 Naive | 链路通、有引用 | 单通道漏召回 |
 | **L2 Hybrid** | 关键词+语义互补 | Top-K 里噪声仍多、排序仍粗 |
-| L3 Rerank | 精排相关性 | 召回阶段就没进来的文档救不回 |
+| L3 Rerank（见 `rerank.md`） | 精排相关性 | 召回阶段就没进来的文档救不回 |
 
 **铁律**：Rerank 只能重排「已经召回的」——Hybrid 的 KPI 是 **Recall@K**，Rerank 的 KPI 是 **nDCG / MRR**。
 

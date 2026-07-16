@@ -13,7 +13,7 @@
 - [x] Embedding：可插拔接口 + 教学用 n-gram；BGE/Qwen 待换真模型
 - [x] 向量存储：内存暴力库（L1）；pgvector / Milvus 待规模化
 - [x] Hybrid Search：BM25 + Vector（RRF 融合；`experiments/rag-hybrid-vs-naive/`）
-- [ ] Reranker：BGE-Reranker 精排
+- [x] Reranker：教学版 Cross 交互精排（`experiments/rag-rerank/`；真 BGE-Reranker 可热替换 scorer）
 - [ ] Query Rewrite：改写用户提问
 - [x] Prompt 模板管理（`prompts/rag-grounded.v1.md`；Registry 复用模块 02）
 - [ ] 与 Gateway（P2）集成，通过统一 Provider 调用模型
