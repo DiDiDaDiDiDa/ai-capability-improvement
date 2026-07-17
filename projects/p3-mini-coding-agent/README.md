@@ -45,7 +45,7 @@ Understanding             │
 
 ## 建议里程碑
 
-1. **M1 最小 Agent Loop**：LLM + Read/Search 工具 + ReAct 循环（复用模块 04 的 Mini Agent）
+1. **M1 最小 Agent Loop**：LLM + Read/Search 工具 + ReAct 循环（复用模块 04：`experiments/mini-agent/`，换 Tool 注册表即可）
 2. **M2 File Edit + Run**：能改文件、跑命令、看结果
 3. **M3 Reflection + Retry**：构建/测试失败时自我诊断重试
 4. **M4 Repository Understanding**：用 RAG 理解大仓库（复用 P1 能力）

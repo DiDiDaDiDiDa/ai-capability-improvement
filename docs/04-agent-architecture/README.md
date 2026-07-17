@@ -16,7 +16,7 @@ Agent = LLM + Memory + Planning + Tool + Observation + Reflection
     Observation ──▶ Think(LLM) ──▶ Plan ──▶ Act(Tool)
         ▲                                        │
         └──────────── Reflection ◀───────────────┘
-                 (成功则结束 / 失败则重试)
+                 (成功则结束 / 失败则重试 / max_turns 停)
 ```
 
 ## 核心概念清单
@@ -41,12 +41,12 @@ Agent = LLM + Memory + Planning + Tool + Observation + Reflection
 ### 4. Tool（工具）与能力供给
 - JSON Schema 定义工具
 - Function Calling 机制
-- **MCP（Model Context Protocol）**：工具/数据的标准协议，三种原语 Tools/Resources/Prompts（详见 [模块 00](../00-key-concepts/)）
-- **Skills**：把做某类任务的流程与资源打包成文件夹，渐进式披露按需加载（详见 [模块 00](../00-key-concepts/)）
+- **MCP（Model Context Protocol）**：工具/数据的标准协议（详见 [模块 00](../00-key-concepts/)）
+- **Skills**：流程与资源打包，渐进式披露（详见 [模块 00](../00-key-concepts/)）
 - OpenAPI / 外部 API 接入
 
 ### 4.5 工程分层（贯穿概念）
-- Prompt / Context / Harness / Loop Engineering 四层递进，Agent 工程的主战场在 Harness 与 Loop（详见 [模块 00](../00-key-concepts/)）
+- Prompt / Context / Harness / Loop Engineering 四层递进，Agent 工程主战场在 Harness 与 Loop（详见 [模块 00](../00-key-concepts/)）
 
 ### 5. Workflow 编排
 - Sequential / Parallel / Router / Loop
@@ -60,9 +60,20 @@ Agent = LLM + Memory + Planning + Tool + Observation + Reflection
 
 ## 建议产出物
 
-- [ ] 一个 Mini Agent：LLM + 工具调用 + ReAct 循环（P3 起点）
-- [ ] 三种记忆（short/long/vector）的最小实现
-- [ ] 一个 Supervisor-Worker 多 agent demo
+- [x] 一个 Mini Agent：工具调用 + ReAct 循环（`experiments/mini-agent/`；P3 M1 起点；真 LLM 可热替换 policy）
+- [x] 三种记忆（short/long/vector）的最小实现（同实验第 2 段）
+- [x] 一个 Supervisor-Worker 多 agent demo（同实验第 5 段）
+
+## 笔记与实验
+
+| 主题 | 笔记 | 实验断言要点 |
+|------|------|----------------|
+| Loop / ReAct | [`agent-loop.md`](agent-loop.md) | 8821 可退四步；max_turns 强制停 |
+| Memory / Plan / Tool / 多 Agent | [`memory-planning-tools.md`](memory-planning-tools.md) | 三记忆；Plan vs ReAct；Schema 校验；路由 |
+
+```bash
+cd experiments/mini-agent && python3 agent_demo.py
+```
 
 ## 面试高频题（出口自测）
 
@@ -77,13 +88,14 @@ Agent = LLM + Memory + Planning + Tool + Observation + Reflection
 ## 资源
 
 - ReAct 论文
-- OpenAI Agents SDK / Anthropic 构建 Agent 的工程实践文章
+- OpenAI Agents SDK / Anthropic 构建 Agent 的工程实践
 - MCP 官方规范
-- LangGraph / AutoGen 等框架的架构文档（看设计思想，不是抄 API）
+- LangGraph / AutoGen 架构文档（看设计思想）
+- 模块 02：`reasoning-enhancement.md`、`prompts/react-agent.v1.md`
 
 ## 检查清单
 
-- [ ] 能默画 Agent 循环并解释每一步
-- [ ] 搭出可运行的 Mini Agent
-- [ ] 能讲清三种记忆与多 agent 拓扑
-- [ ] 能回答上面全部面试题
+- [x] 能默画 Agent 循环并解释每一步（`agent-loop.md`）
+- [x] 搭出可运行的 Mini Agent（`experiments/mini-agent/agent_demo.py`）
+- [x] 能讲清三种记忆与多 agent 拓扑（`memory-planning-tools.md`）
+- [x] 能回答上面全部面试题（对照笔记 + 实验轨迹）
