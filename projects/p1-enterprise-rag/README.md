@@ -14,7 +14,7 @@
 - [x] 向量存储：内存暴力库（L1）；pgvector / Milvus 待规模化
 - [x] Hybrid Search：BM25 + Vector（RRF 融合；`experiments/rag-hybrid-vs-naive/`）
 - [x] Reranker：教学版 Cross 交互精排（`experiments/rag-rerank/`；真 BGE-Reranker 可热替换 scorer）
-- [ ] Query Rewrite：改写用户提问
+- [x] Query Rewrite：改写用户提问（`experiments/rag-query-opt/`；Rewrite/HyDE/Multi/Self 四路，真 LLM 改写可热替换规则）
 - [x] Prompt 模板管理（`prompts/rag-grounded.v1.md`；Registry 复用模块 02）
 - [ ] 与 Gateway（P2）集成，通过统一 Provider 调用模型
 - [x] 答案带来源引用（可溯源，`[S#]` + doc#chunk）
