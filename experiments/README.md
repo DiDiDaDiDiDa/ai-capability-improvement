@@ -12,6 +12,7 @@
 - `rag-rerank/`：L3 粗召回 + Cross 精排（MRR/Top-1 翻盘，教学 scorer）
 - `rag-query-opt/`：L4 Query 优化（Rewrite / HyDE / Multi-Query / Self-Query，四路翻盘对照）
 - `rag-context-eng/`：L5 上下文工程（Parent-Child / Compression / Lost-in-middle）
+- `rag-graphrag/`：L6 GraphRAG（实体关系抽取 / Local 多跳 / Global 社区，对照纯向量 flip）
 - `lora-finetune/`：LoRA 微调实验
 
 ## 单个实验建议格式

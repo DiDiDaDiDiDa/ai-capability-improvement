@@ -165,11 +165,11 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 | 00 关键概念        | ✅ 完成  | 2026-07-07 | MCP/Skills/四层工程 自测通过 |
 | 01 基础           | ✅ 完成  | 2026-07-07 ~ 07-08 | 分词/Embedding/Transformer/推理采样，4篇笔记+4实验 |
 | 02 提示词          | ✅ 完成  | 2026-07-14 | Day5~8 笔记+实验+模板库+Prompt Registry SDK |
-| 03 RAG          | 🟡 进行中 | 2026-07-15 | L1 Naive RAG 笔记+实验+模板已交付 |
+| 03 RAG          | ✅ 完成  | 2026-07-15 ~ 07-17 | L1–L6 笔记+实验全绿（Hybrid/Rerank/Query/Context/GraphRAG） |
 | 04 Agent        | ⬜ 未开始 |     |     |
 | 05 微调评估         | ⬜ 未开始 |     |     |
 | 06 AI Infra     | ⬜ 未开始 |     |     |
-| P1 RAG 平台       | ⬜ 未开始 |     |     |
+| P1 RAG 平台       | 🟡 进行中 | 2026-07-15 | M1–M3 教学版链路已齐；M4 Gateway 集成待做 |
 | P2 Gateway      | ⬜ 未开始 |     |     |
 | P3 Coding Agent | ⬜ 未开始 |     |     |
 
