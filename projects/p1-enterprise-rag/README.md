@@ -9,7 +9,7 @@
 ## 能力清单
 
 - [x] 文档导入：Markdown/TXT 最小加载（L1；PDF/Word 待 M4）
-- [x] Chunk 切分策略：固定长度 + 重叠（L1）；语义 / Parent-Child 待后续
+- [x] Chunk 切分策略：固定长度 + 重叠（L1）；Parent-Child（`experiments/rag-context-eng/`；语义切分待后续）
 - [x] Embedding：可插拔接口 + 教学用 n-gram；BGE/Qwen 待换真模型
 - [x] 向量存储：内存暴力库（L1）；pgvector / Milvus 待规模化
 - [x] Hybrid Search：BM25 + Vector（RRF 融合；`experiments/rag-hybrid-vs-naive/`）
@@ -45,7 +45,7 @@ Prompt 组装（含来源）
 
 1. **M1 跑通 Naive RAG**：单一 PDF → chunk → embedding → 检索 → 生成
 2. **M2 加 Hybrid + Rerank**：召回质量对比实验
-3. **M3 加 Query Rewrite + Parent-Child**：提升复杂问题效果
+3. **M3 加 Query Rewrite + Parent-Child**：提升复杂问题效果（Query Rewrite + Parent-Child 均已有教学版实验，可热替换）
 4. **M4 工程化**：多格式导入、Prompt 模板、来源引用、接 Gateway
 
 ## 技术选型（建议，可换）
