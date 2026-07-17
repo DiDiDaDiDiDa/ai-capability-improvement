@@ -9,3 +9,11 @@
 | P3 | Mini Coding Agent | [`p3-mini-coding-agent/`](p3-mini-coding-agent/) | ~25h | 学完模块 04 | 02 / 03 / 04 / 06 |
 
 验收标准：每个项目都能 `run` 起来、能演示核心链路。
+
+## 进度速览
+
+| 项目 | 状态 | 怎么跑 |
+|------|------|--------|
+| P1 企业级 RAG | ✅ M1–M4 | `cd p1-enterprise-rag && python3 app.py` |
+| P2 AI Gateway | ⬜ 能力清单待实现；接缝已在 P1 `LLMProvider` 预留 | 见 `p2-ai-gateway/README.md` |
+| P3 Mini Coding Agent | ⬜ | 见 `p3-mini-coding-agent/` |

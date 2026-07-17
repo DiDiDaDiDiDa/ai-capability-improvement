@@ -169,7 +169,7 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 | 04 Agent        | ⬜ 未开始 |     |     |
 | 05 微调评估         | ⬜ 未开始 |     |     |
 | 06 AI Infra     | ⬜ 未开始 |     |     |
-| P1 RAG 平台       | 🟡 进行中 | 2026-07-15 | M1–M3 教学版链路已齐；M4 Gateway 集成待做 |
+| P1 RAG 平台       | ✅ 完成  | 2026-07-15 ~ 07-17 | M1–M4：`projects/p1-enterprise-rag/app.py` 可运行；Gateway Provider 可热替换 |
 | P2 Gateway      | ⬜ 未开始 |     |     |
 | P3 Coding Agent | ⬜ 未开始 |     |     |
 

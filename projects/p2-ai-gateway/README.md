@@ -49,8 +49,23 @@ Multi Provider（OpenAI / Anthropic / Gemini / Qwen / DeepSeek）
 
 Gateway 对外暴露，务必设计好鉴权与限流。新增任何对外端点时确认认证是否到位，不要留无鉴权入口。
 
+## 与 P1 的接缝（已预留）
+
+P1 企业级 RAG（`projects/p1-enterprise-rag/`）已通过 `LLMProvider` 抽象对接 OpenAI 兼容 Chat Completions：
+
+```bash
+# P1 侧把出口指到本 Gateway（P2 起服务后）：
+P1_PROVIDER=http \
+P1_GATEWAY_URL=http://127.0.0.1:<gateway-port>/v1/chat/completions \
+P1_GATEWAY_KEY=<token> \
+python3 projects/p1-enterprise-rag/app.py
+```
+
+P1 默认 `mock-gateway` 离线可跑；真链路验收 = P2 提供兼容端点 + 鉴权/限流。
+
 ## 验收标准
 
 - 一个 Provider 挂了能自动 Fallback
 - 相似请求能命中 Semantic Cache
 - Dashboard 能看到 token 成本与延迟
+- P1 能通过 `P1_PROVIDER=http` 经本 Gateway 完成一次 grounded 问答
