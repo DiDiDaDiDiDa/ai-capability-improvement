@@ -167,7 +167,7 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 | 02 提示词          | ✅ 完成  | 2026-07-14 | Day5~8 笔记+实验+模板库+Prompt Registry SDK |
 | 03 RAG          | ✅ 完成  | 2026-07-15 ~ 07-17 | L1–L6 笔记+实验全绿（Hybrid/Rerank/Query/Context/GraphRAG） |
 | 04 Agent        | ✅ 完成  | 2026-07-17 | Mini Agent 实验+双笔记；Loop/Memory/Plan/Tool/多Agent 全绿；P3 M1 起点 |
-| 05 微调评估         | ⬜ 未开始 |     |     |
+| 05 微调评估         | ✅ 完成  | 2026-07-20 | LoRA/QLoRA/选型 + BLEU/ROUGE/Judge；`experiments/finetune-eval/` 全绿 |
 | 06 AI Infra     | ⬜ 未开始 |     |     |
 | P1 RAG 平台       | ✅ 完成  | 2026-07-15 ~ 07-17 | M1–M4：`projects/p1-enterprise-rag/app.py` 可运行；Gateway Provider 可热替换 |
 | P2 Gateway      | ⬜ 未开始 |     | 模块 06 启动；P1 侧 `LLMProvider` 接缝已预留 |

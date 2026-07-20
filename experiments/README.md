@@ -14,7 +14,7 @@
 - `rag-context-eng/`：L5 上下文工程（Parent-Child / Compression / Lost-in-middle）
 - `rag-graphrag/`：L6 GraphRAG（实体关系抽取 / Local 多跳 / Global 社区，对照纯向量 flip）
 - `mini-agent/`：模块 04 Mini Agent（ReAct Loop / Memory / Plan / Tool Schema / Supervisor-Worker）
-- `lora-finetune/`：LoRA 微调实验
+- `finetune-eval/`：模块 05 微调与评估（LoRA 参数量/前向、QLoRA 存储、SFT/DPO 定位、选型、BLEU/ROUGE/Judge 偏差）
 
 ## 单个实验建议格式
 
