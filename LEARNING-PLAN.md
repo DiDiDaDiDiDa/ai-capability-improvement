@@ -170,7 +170,7 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 | 05 微调评估         | ⬜ 未开始 |     |     |
 | 06 AI Infra     | ⬜ 未开始 |     |     |
 | P1 RAG 平台       | ✅ 完成  | 2026-07-15 ~ 07-17 | M1–M4：`projects/p1-enterprise-rag/app.py` 可运行；Gateway Provider 可热替换 |
-| P2 Gateway      | ⬜ 未开始 |     |     |
-| P3 Coding Agent | ⬜ 未开始 |     |     |
+| P2 Gateway      | ⬜ 未开始 |     | 模块 06 启动；P1 侧 `LLMProvider` 接缝已预留 |
+| P3 Coding Agent | 🟡 进行中 | 2026-07-20 | M1+M2 全绿：`projects/p3-mini-coding-agent/app.py`；read/search/edit/run + 沙箱；轻量 M3 红→绿；M4/M5 待 |
 
 状态标记：⬜ 未开始 / 🟡 进行中 / ✅ 完成

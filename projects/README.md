@@ -16,4 +16,4 @@
 |------|------|--------|
 | P1 企业级 RAG | ✅ M1–M4 | `cd p1-enterprise-rag && python3 app.py` |
 | P2 AI Gateway | ⬜ 能力清单待实现；接缝已在 P1 `LLMProvider` 预留 | 见 `p2-ai-gateway/README.md` |
-| P3 Mini Coding Agent | ⬜ | 见 `p3-mini-coding-agent/` |
+| P3 Mini Coding Agent | 🟡 M1+M2（轻量 M3） | `cd p3-mini-coding-agent && python3 app.py` |

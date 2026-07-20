@@ -61,6 +61,7 @@ Agent = LLM + Memory + Planning + Tool + Observation + Reflection
 ## 建议产出物
 
 - [x] 一个 Mini Agent：工具调用 + ReAct 循环（`experiments/mini-agent/`；P3 M1 起点；真 LLM 可热替换 policy）
+- [x] P3 换 Tool 注册表：`projects/p3-mini-coding-agent/`（read/search/edit/run + 沙箱；`python3 app.py` 全绿）
 - [x] 三种记忆（short/long/vector）的最小实现（同实验第 2 段）
 - [x] 一个 Supervisor-Worker 多 agent demo（同实验第 5 段）
 
