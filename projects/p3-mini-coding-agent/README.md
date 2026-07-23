@@ -12,16 +12,16 @@
 
 ```bash
 cd projects/p3-mini-coding-agent && python3 app.py
-# DONE · P3 M1+M2 green  EXIT:0
+# DONE · P3 M1–M5 green  EXIT:0
 ```
 
-- **Mock policy** 离线全绿（教学 LLM 可热替换）
+- **Mock policy / Gateway provider** 离线全绿（教学 LLM 可热替换）
 - 每次跑在 **temp 沙箱副本** 上改文件，不污染 `sandbox/sample_repo` 模板
-- 工具：`list_dir` / `read_file` / `search_code` / `edit_file` / `run_cmd`
+- 工具：`list_dir` / `read_file` / `search_code` / `edit_file` / `run_cmd` / `repo_map` / `retrieve_context`（+ MCP 动态注册）
 
 ## 核心能力（七大模块）
 
-- [ ] Repository Understanding：代码仓库理解（可用 RAG）— M4
+- [x] Repository Understanding：代码仓库理解 — M4：`repo_map`（ast 符号摘要，Aider 风格）+ `retrieve_context`（TF-IDF 预索引，Cursor 风格）
 - [x] Planner：任务规划与分解 — Mock policy 路径即最小 plan；完整 Plan-and-Execute 见模块 04
 - [x] Tool Manager：Read / Write / Search / Run — `p3agent/tools.py`
 - [x] File Edit：精确编辑文件 — 唯一 `old_str` 匹配（Aider 风格）
@@ -29,7 +29,7 @@ cd projects/p3-mini-coding-agent && python3 app.py
 - [x] Self-Reflection：错误分析与自我修复 — 红测 → edit → 再跑（轻量 M3）
 - [x] Retry / Finish：重试或结束的决策 — `finish` + `max_turns`
 - [x] Git Commit 建议 — finish 附带 `commit_message`
-- [ ] MCP 工具扩展 — M5
+- [x] MCP 工具扩展 + Gateway 接缝 — M5：`mcp_ext.py`（外部工具动态注册进 registry，loop 零改动）+ `gateway.py`（LLMProvider 抽象，policy 可热替换真模型）
 
 ## 目标架构
 
@@ -58,9 +58,9 @@ Understanding             │
 
 1. **M1 最小 Agent Loop** ✅：LLM + Read/Search 工具 + ReAct 循环（复用模块 04 骨架，换 Tool 注册表）
 2. **M2 File Edit + Run** ✅：能改文件、跑命令、看结果
-3. **M3 Reflection + Retry** 🟡：构建/测试失败时自我诊断重试（本验收已含「红→改→绿」；通用 reflection policy 待加深）
-4. **M4 Repository Understanding**：用 RAG 理解大仓库（复用 P1 能力）
-5. **M5 收尾**：Git Commit 建议（已有最小版）+ MCP 扩展 + 接 Gateway
+3. **M3 Reflection + Retry** ✅：构建/测试失败时自我诊断重试（「红→改→绿」reflection 路径）
+4. **M4 Repository Understanding** ✅：`repo_map`（ast 符号摘要）+ `retrieve_context`（TF-IDF 预索引检索），纯 stdlib 证明「索引+检索」本质
+5. **M5 收尾** ✅：Git Commit 建议 + MCP 工具动态扩展（`mcp_ext.py`）+ Gateway 接缝（`gateway.py`，LLMProvider 可热替换）
 
 ## 目录
 
@@ -69,10 +69,13 @@ p3-mini-coding-agent/
   app.py                 # 验收入口 EXIT:0
   p3agent/
     workspace.py         # 路径沙箱
-    tools.py             # read/search/edit/run/list
+    tools.py             # read/search/edit/run/list + repo_map/retrieve_context
     loop.py              # ReAct + max_turns
     policy.py            # Mock policy（可热替换真 LLM）
-  sandbox/sample_repo/   # 有意写错的 calc.add + unittest
+    repo_index.py        # M4: ast repo-map + TF-IDF 检索
+    mcp_ext.py           # M5: MCP 工具动态注册进 registry
+    gateway.py           # M5: LLMProvider 抽象 + Mock（policy 可热替换）
+  sandbox/sample_repo/   # 有意写错的 calc.add + unittest + stringutil/geometry（检索料）
   harness-breakdown.md
 ```
 
@@ -88,8 +91,8 @@ Coding Agent 会执行命令和改文件，务必：
 ## 验收标准
 
 - [x] 给一个真实小仓库 + 一个任务，Agent 能读懂、改代码、跑测试、自我修复并给出 commit 建议（`app.py` 全绿）
-- [ ] 大仓库 RAG 理解（M4）
-- [ ] MCP + Gateway（M5）
+- [x] 仓库理解（M4）：repo-map 提 16 符号 + TF-IDF 检索「circle area」→ circle_area 排第一
+- [x] MCP + Gateway（M5）：外部工具动态注册进 registry（7→8，loop 零改）+ Gateway provider 驱动修复全绿
 
 ## 底层逻辑（三句话）
 

@@ -57,9 +57,20 @@ Serving（vLLM / SGLang / Triton）
 
 ## 建议产出物
 
+- [x] 一份 vLLM / PagedAttention 原理笔记 + 机制账（[`serving-batching-paged.md`](serving-batching-paged.md) + `experiments/ai-infra/serving_demo.py`）
 - [ ] 项目 P2：Gateway 增强版（Router + Semantic Cache + Fallback + Cost Dashboard）
-- [ ] 一份 vLLM / PagedAttention 原理笔记 + 架构图
 - [ ] 一个 Semantic Cache 最小实现（embedding 相似度命中）
+
+## 笔记与实验
+
+| 主题 | 笔记 | 实验断言要点 |
+|------|------|----------------|
+| Serving 四机制 | [`serving-batching-paged.md`](serving-batching-paged.md) | KV 162x；连续 batch 利用率 34%→87% 吞吐 2.57x；分页省 65% 显存；投机 3.70x |
+| Gateway / Cache / Router | 落到项目 P2（进行中） | — |
+
+```bash
+python3 experiments/ai-infra/serving_demo.py
+```
 
 ## 面试高频题（出口自测）
 
@@ -80,7 +91,7 @@ Serving（vLLM / SGLang / Triton）
 
 ## 检查清单
 
-- [ ] 能画出 Client → Gateway → Provider → Serving 全链路
-- [ ] 能讲清 Continuous Batching / PagedAttention / Speculative Decoding
+- [x] 能画出 Client → Gateway → Provider → Serving 全链路（见全景链路图）
+- [x] 能讲清 Continuous Batching / PagedAttention / Speculative Decoding（笔记 + 实验全绿）
 - [ ] 完成 P2 Gateway 增强版
-- [ ] 能回答上面全部面试题
+- [ ] 能回答上面全部面试题（Serving 三题已覆盖，Gateway/Cache 随 P2 补齐）

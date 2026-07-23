@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
 
+from .repo_index import RepoRetriever, build_repo_map, render_repo_map
 from .workspace import Workspace, WorkspaceError
 
 ToolFn = Callable[[dict[str, Any], Workspace], dict[str, Any]]
@@ -220,6 +221,37 @@ def tool_list_dir(args: dict[str, Any], ws: Workspace) -> dict[str, Any]:
     return {"ok": True, "path": rel, "entries": entries}
 
 
+# ---- M4: Repository Understanding tools ------------------------------------
+def tool_repo_map(args: dict[str, Any], ws: Workspace) -> dict[str, Any]:
+    """Aider 风格仓库地图：ast 抽符号，返回紧凑概览（低 token 冷启动）。"""
+    glob = str(args.get("glob") or "*.py")
+    repo_map = build_repo_map(ws.root, glob)
+    rendered = render_repo_map(repo_map)
+    max_chars = int(args.get("max_chars") or 4000)
+    truncated = len(rendered) > max_chars
+    if truncated:
+        rendered = rendered[:max_chars] + "\n…[truncated]"
+    n_syms = sum(len(v) for v in repo_map.values())
+    return {
+        "ok": True,
+        "files": list(repo_map.keys()),
+        "symbol_count": n_syms,
+        "map": rendered,
+        "truncated": truncated,
+    }
+
+
+def tool_retrieve_context(args: dict[str, Any], ws: Workspace) -> dict[str, Any]:
+    """预索引检索：TF-IDF 余弦按 query 召回最相关符号块（Cursor 预索引 stdlib 版）。"""
+    query = str(_require(args, "query"))
+    top_k = int(args.get("top_k") or 5)
+    glob = str(args.get("glob") or "*.py")
+    retriever = RepoRetriever.build(ws.root, glob)
+    hits = retriever.search(query, top_k=top_k)
+    return {"ok": True, "query": query, "hits": hits, "hit_count": len(hits),
+            "indexed_chunks": len(retriever.chunks)}
+
+
 TOOL_REGISTRY: dict[str, ToolSpec] = {
     "list_dir": ToolSpec(
         name="list_dir",
@@ -287,6 +319,33 @@ TOOL_REGISTRY: dict[str, ToolSpec] = {
             "required": [],
         },
         handler=tool_run_cmd,
+    ),
+    "repo_map": ToolSpec(
+        name="repo_map",
+        description="Aider-style repo map: ast symbol summary of the workspace (low-token overview)",
+        parameters={
+            "type": "object",
+            "properties": {
+                "glob": {"type": "string"},
+                "max_chars": {"type": "integer"},
+            },
+            "required": [],
+        },
+        handler=tool_repo_map,
+    ),
+    "retrieve_context": ToolSpec(
+        name="retrieve_context",
+        description="Pre-indexed TF-IDF retrieval: rank most relevant symbols for a query",
+        parameters={
+            "type": "object",
+            "properties": {
+                "query": {"type": "string"},
+                "top_k": {"type": "integer"},
+                "glob": {"type": "string"},
+            },
+            "required": ["query"],
+        },
+        handler=tool_retrieve_context,
     ),
 }
 

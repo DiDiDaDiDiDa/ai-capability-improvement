@@ -168,9 +168,9 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 | 03 RAG          | ✅ 完成  | 2026-07-15 ~ 07-17 | L1–L6 笔记+实验全绿（Hybrid/Rerank/Query/Context/GraphRAG） |
 | 04 Agent        | ✅ 完成  | 2026-07-17 | Mini Agent 实验+双笔记；Loop/Memory/Plan/Tool/多Agent 全绿；P3 M1 起点 |
 | 05 微调评估         | ✅ 完成  | 2026-07-20 | LoRA/QLoRA/选型 + BLEU/ROUGE/Judge；`experiments/finetune-eval/` 全绿 |
-| 06 AI Infra     | ⬜ 未开始 |     |     |
+| 06 AI Infra     | 🟡 进行中 | 2026-07-22 | Serving 全绿：`experiments/ai-infra/serving_demo.py`（KV/Continuous Batching/PagedAttention/Speculative）；Gateway/Cache 随 P2 |
 | P1 RAG 平台       | ✅ 完成  | 2026-07-15 ~ 07-17 | M1–M4：`projects/p1-enterprise-rag/app.py` 可运行；Gateway Provider 可热替换 |
 | P2 Gateway      | ⬜ 未开始 |     | 模块 06 启动；P1 侧 `LLMProvider` 接缝已预留 |
-| P3 Coding Agent | 🟡 进行中 | 2026-07-20 | M1+M2 全绿：`projects/p3-mini-coding-agent/app.py`；read/search/edit/run + 沙箱；轻量 M3 红→绿；M4/M5 待 |
+| P3 Coding Agent | ✅ 完成  | 2026-07-20 ~ 07-22 | M1–M5 全绿：`projects/p3-mini-coding-agent/app.py`；read/search/edit/run+沙箱、红→绿 reflection、M4 repo-map+TF-IDF 检索、M5 MCP 动态注册+Gateway 热替换 |
 
 状态标记：⬜ 未开始 / 🟡 进行中 / ✅ 完成
