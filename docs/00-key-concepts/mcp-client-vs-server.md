@@ -61,5 +61,5 @@ MCP 确实"只是一个协议"，但协议是"约定怎么对话"，真正跑起
 
 ## 关联
 
-- 概念总览见 [模块 00 README](README.md) 的 MCP 一节
+- 概念总览见 [模块 00 README](ai-capability-improvement/docs/00-key-concepts/README.md) 的 MCP 一节
 - Tool Calling 与 MCP 三原语在 [模块 04 · Agent](../04-agent-architecture/) 深入

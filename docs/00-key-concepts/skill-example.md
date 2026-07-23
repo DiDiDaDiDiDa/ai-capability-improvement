@@ -1,7 +1,7 @@
 # 完整标准 Skill 示例（含逐块讲解）
 
 > 所属模块：00 关键概念 ｜ 学习日期：2026-07-07
-> 配套 [模块 00 README](README.md) 的 Skills 一节。这里给一个**结构完整、字段标准**的 Skill，照着就能自己写。
+> 配套 [模块 00 README](ai-capability-improvement/docs/00-key-concepts/README.md) 的 Skills 一节。这里给一个**结构完整、字段标准**的 Skill，照着就能自己写。
 
 ## 一个 Skill 长什么样
 
@@ -100,5 +100,5 @@ allowed-tools:
 - [x] 遵守三层渐进式披露，别把重资料塞进正文
 
 ## 关联
-- 概念总览见 [模块 00 README](README.md) 的 Skills 一节与 MCP vs Skills 对比
+- 概念总览见 [模块 00 README](ai-capability-improvement/docs/00-key-concepts/README.md) 的 Skills 一节与 MCP vs Skills 对比
 - Tool Calling / MCP 的深入见 [模块 04 · Agent](../04-agent-architecture/)

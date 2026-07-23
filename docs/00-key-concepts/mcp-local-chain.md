@@ -91,4 +91,4 @@ startup_timeout_sec = 120.0
 
 ## 关联
 - 角色概念见 [MCP Client vs Server 辨析](mcp-client-vs-server.md)
-- 协议总览见 [模块 00 README](README.md)
+- 协议总览见 [模块 00 README](ai-capability-improvement/docs/00-key-concepts/README.md)
