@@ -8,9 +8,9 @@
 
 ## 能力清单
 
-- [ ] Model Router：按成本 / 延迟 / 能力动态选模型
-- [ ] Semantic Cache：语义相似命中，省调用
-- [ ] Prompt Version 管理（复用模块 02）
+- [x] Model Router：按成本 / 延迟 / 能力动态选模型 — `p2gateway/router.py`（cost/latency/quality/balanced 四策略 + 能力硬过滤 + 无候选 RouteError；自身实现 P1 `chat` 契约可热插）｜实现详解见 [`model-router.md`](model-router.md)
+- [x] Semantic Cache：语义相似命中，省调用 — `p2gateway/semantic_cache.py`（embedding+余弦阈值命中 + TTL 失效 + 容量淘汰 + 阈值防误命中；装饰器套 Router 外层）｜实现详解见 [`semantic-cache.md`](semantic-cache.md)
+- [x] Prompt Version 管理（**应用层 SDK**，复用模块 02）— `p2gateway/prompt_client.py`（直接 import 模块02 `PromptRegistry`：版本钉扎 + alias 发布回滚 + A/B 稳定分桶 + 版本不可变）；**Gateway 只收不透明 `version_tag` 做归因，不碰 prompt 内容**｜分层详解见 [`prompt-version.md`](prompt-version.md)
 - [ ] Token Cost Dashboard：成本可视化
 - [ ] Guardrail：输入输出安全 / 敏感信息 Masking
 - [ ] Fallback + Retry：Provider 故障兜底
@@ -37,11 +37,22 @@ Gateway
 Multi Provider（OpenAI / Anthropic / Gemini / Qwen / DeepSeek）
 ```
 
+## 怎么跑（当前验收）
+
+```bash
+cd projects/p2-ai-gateway && python3 app.py
+# DONE · P2 Router + Semantic Cache + Prompt Version green  EXIT:0
+```
+
+- 14 段断言全绿：Router 5 段 + Cache 4 段 + Prompt Version 5 段（版本钉扎/alias 发布回滚/A/B 稳定分桶/版本不可变/全链路：应用层 SDK 治理 + Gateway 侧 version_tag 归因）
+- Router 复用 P1 `LLMProvider` 契约（`chat(messages)→{content,usage,provider}`），自身即 Provider，可组合热插
+- `ScriptedProvider` 离线可跑；生产替换为 P1 `HttpGatewayProvider`（同契约），Router 无感
+
 ## 建议里程碑
 
-1. **M1 Provider 抽象 + Fallback/Retry**：统一接口 + 可靠性
-2. **M2 Model Router**：按规则/成本选模型
-3. **M3 Semantic Cache**：embedding 相似度命中 + Redis
+1. **M1 Provider 抽象 + Fallback/Retry**：统一接口 + 可靠性（Provider 抽象+元数据已落 `providers.py`；Fallback/Retry 待）
+2. **M2 Model Router** ✅：按成本/延迟/能力/balanced 四策略选模型，能力硬过滤 + 无候选 RouteError
+3. **M3 Semantic Cache** ✅：embedding+余弦阈值命中 + TTL/容量 + 阈值防误命中（stdlib embedding；生产换真语义 embedding + Redis/FAISS，方法不变）
 4. **M4 Cost & Observability**：成本核算 + Tracing + Dashboard
 5. **M5 Guardrail**：输入输出安全
 

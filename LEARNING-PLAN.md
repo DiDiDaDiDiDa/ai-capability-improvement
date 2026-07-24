@@ -170,7 +170,7 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 | 05 微调评估         | ✅ 完成  | 2026-07-20 | LoRA/QLoRA/选型 + BLEU/ROUGE/Judge；`experiments/finetune-eval/` 全绿 |
 | 06 AI Infra     | 🟡 进行中 | 2026-07-22 | Serving 全绿：`experiments/ai-infra/serving_demo.py`（KV/Continuous Batching/PagedAttention/Speculative）；Gateway/Cache 随 P2 |
 | P1 RAG 平台       | ✅ 完成  | 2026-07-15 ~ 07-17 | M1–M4：`projects/p1-enterprise-rag/app.py` 可运行；Gateway Provider 可热替换 |
-| P2 Gateway      | ⬜ 未开始 |     | 模块 06 启动；P1 侧 `LLMProvider` 接缝已预留 |
+| P2 Gateway      | 🟡 进行中 | 2026-07-23 | Model Router + Semantic Cache + Prompt Version 全绿：`projects/p2-ai-gateway/app.py` 14 段（四策略选型/能力硬过滤/无候选报错/chat 契约 + 语义命中省调用/阈值防误命中/TTL + 版本钉扎/alias 发布回滚/A/B 稳定分桶/不可变/全链路）；复用 P1 `LLMProvider`+`embed_text`、模块02 `PromptRegistry`；Prompt 治理落在应用层 SDK，Gateway 只做 version_tag 归因（分层解耦）|
 | P3 Coding Agent | ✅ 完成  | 2026-07-20 ~ 07-22 | M1–M5 全绿：`projects/p3-mini-coding-agent/app.py`；read/search/edit/run+沙箱、红→绿 reflection、M4 repo-map+TF-IDF 检索、M5 MCP 动态注册+Gateway 热替换 |
 
 状态标记：⬜ 未开始 / 🟡 进行中 / ✅ 完成
