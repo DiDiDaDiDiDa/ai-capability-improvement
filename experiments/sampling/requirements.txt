@@ -1,0 +1,9 @@
+# 模块 01 · Day4 采样参数对比（temperature / top-k / top-p）
+# 只需 numpy：softmax / argsort / cumsum / searchsorted / random.choice
+#
+# 用法（在本目录下）：
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+#   .venv/bin/python sampling_demo.py
+#
+# 版本按实际验证环境钉扎（Python 3.14.5）
+numpy==2.5.1

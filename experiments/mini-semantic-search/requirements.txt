@@ -1,0 +1,14 @@
+# 模块 01 · Day2 Embedding 语义检索
+#
+# 注意：本实验是全仓最重的一个——sentence-transformers 会拖入 torch，
+# 且首次运行需联网从 HuggingFace 下载 paraphrase-multilingual-MiniLM-L12-v2
+# （约 470MB）。无网络或未预热缓存时会长时间阻塞在模型加载，不是脚本卡死。
+# 安装体积约数 GB，不适合放进快速验收循环。
+#
+# 用法（在本目录下）：
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+#   .venv/bin/python mini_search.py      # 首次运行较慢，等模型下载完成
+#
+# 版本按实际验证环境钉扎（Python 3.14.5）
+numpy==2.5.1
+sentence-transformers==5.6.0

@@ -1,0 +1,10 @@
+# 模块 01 · Day1 分词
+#   mini_bpe.py        纯 stdlib（collections.Counter），无需本文件即可运行
+#   demo_tiktoken.py   需 tiktoken，首次运行会联网下载 cl100k_base 编码表并缓存
+#
+# 用法（在本目录下）：
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+#   .venv/bin/python demo_tiktoken.py
+#
+# 版本按实际验证环境钉扎（Python 3.14.5）
+tiktoken==0.13.0

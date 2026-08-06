@@ -1,0 +1,9 @@
+# 模块 01 · Day3 手写单头 Self-Attention
+# 只需 numpy：矩阵乘 / softmax / 随机初始化投影矩阵
+#
+# 用法（在本目录下）：
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+#   .venv/bin/python single_head.py
+#
+# 版本按实际验证环境钉扎（Python 3.14.5）
+numpy==2.5.1
