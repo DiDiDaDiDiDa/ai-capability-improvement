@@ -11,12 +11,14 @@
 - [x] Model Router：按成本 / 延迟 / 能力动态选模型 — `p2gateway/router.py`（cost/latency/quality/balanced 四策略 + 能力硬过滤 + 无候选 RouteError；自身实现 P1 `chat` 契约可热插）｜实现详解见 [`model-router.md`](model-router.md)
 - [x] Semantic Cache：语义相似命中，省调用 — `p2gateway/semantic_cache.py`（embedding+余弦阈值命中 + TTL 失效 + 容量淘汰 + 阈值防误命中；装饰器套 Router 外层）｜实现详解见 [`semantic-cache.md`](semantic-cache.md)
 - [x] Prompt Version 管理（**应用层 SDK**，复用模块 02）— `p2gateway/prompt_client.py`（直接 import 模块02 `PromptRegistry`：版本钉扎 + alias 发布回滚 + A/B 稳定分桶 + 版本不可变）；**Gateway 只收不透明 `version_tag` 做归因，不碰 prompt 内容**｜分层详解见 [`prompt-version.md`](prompt-version.md)
-- [ ] Token Cost Dashboard：成本可视化
-- [ ] Guardrail：输入输出安全 / 敏感信息 Masking
-- [ ] Fallback + Retry：Provider 故障兜底
-- [ ] Circuit Breaker：熔断保护
-- [ ] Rate Limit / Quota：限流与配额
-- [ ] Observability：Tracing + Metrics
+- [x] Token Cost Dashboard：成本可视化 — `p2gateway/cost_dashboard.py`（`MeteredProvider` 最外层采集 + `CostTracker` 按 provider/version/cache 多维聚合 + `render_dashboard` 文本面板；量化「缓存省了多少钱」）｜实现详解见 [`cost-dashboard.md`](cost-dashboard.md)
+以下 5 项交付物为**设计说明（未落代码）**——讲清机制与踩坑点，不做实现：
+
+- [x] Guardrail：输入输出安全 / 敏感信息 Masking ｜设计说明见 [`guardrail.md`](guardrail.md)
+- [x] Fallback + Retry：Provider 故障兜底 ｜设计说明见 [`fallback-retry.md`](fallback-retry.md)
+- [x] Circuit Breaker：熔断保护 ｜设计说明见 [`circuit-breaker.md`](circuit-breaker.md)
+- [x] Rate Limit / Quota：限流与配额 ｜设计说明见 [`rate-limit-quota.md`](rate-limit-quota.md)
+- [x] Observability：Tracing + Metrics ｜设计说明见 [`observability.md`](observability.md)
 
 ## 目标架构
 
