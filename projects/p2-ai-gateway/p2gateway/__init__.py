@@ -1,5 +1,12 @@
 """P2 · AI Gateway 增强版 —— Model Router（复用 P1 LLMProvider 契约）。"""
 
+from .cost_dashboard import (
+    CostTracker,
+    MeteredProvider,
+    UsageRecord,
+    record_from_usage,
+    render_dashboard,
+)
 from .providers import ModelProfile, ScriptedProvider
 from .router import ModelRouter, RouteRequest, RouteError
 from .semantic_cache import CachedProvider, SemanticCache, cosine, embed_text
@@ -28,4 +35,9 @@ __all__ = [
     "PromptSpec",
     "RegistryError",
     "Template",
+    "UsageRecord",
+    "CostTracker",
+    "MeteredProvider",
+    "record_from_usage",
+    "render_dashboard",
 ]
