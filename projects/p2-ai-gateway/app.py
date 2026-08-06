@@ -15,6 +15,13 @@ from __future__ import annotations
 
 import sys
 
+from p2gateway.cost_dashboard import (
+    CostTracker,
+    MeteredProvider,
+    UsageRecord,
+    record_from_usage,
+    render_dashboard,
+)
 from p2gateway.providers import ModelProfile, ScriptedProvider
 from p2gateway.router import ModelRouter, RouteError, RouteRequest
 from p2gateway.semantic_cache import CachedProvider, SemanticCache
@@ -320,6 +327,74 @@ def demo_prompt_full_chain() -> None:
     print("  full chain: PASS（应用层版本治理 + Gateway 侧版本归因，正交解耦）")
 
 
+def demo_cost_dashboard() -> None:
+    section("15) Cost Dashboard: 采集最外层 → 多维聚合 → 面板渲染")
+    # 全链路：SDK(版本治理) → Metered(采集) → Cache(命中) → Router(选型) → Provider(成本)
+    metered = MeteredProvider(inner=CachedProvider(
+        inner=ModelRouter(build_fleet()), cache=SemanticCache(threshold=0.85)))
+    sdk = PromptClient(registry=build_registry(), gateway=metered)
+
+    # v1+cost 走 cheap-fast；重复问 → 命中；v2 渲染文本不同 → miss，且 quality 选 premium
+    sdk.run(PromptRequest(prompt_id="qa", version="v1", variables={"q": "怎么退货"}),
+            strategy="cost")
+    sdk.run(PromptRequest(prompt_id="qa", version="v1", variables={"q": "怎么退货"}),
+            strategy="cost")                                  # 同文本 sim=1.0 → hit
+    sdk.run(PromptRequest(prompt_id="qa", version="v2", variables={"q": "怎么退货"}),
+            strategy="quality")                               # v2 模板不同 → miss
+    sdk.run(PromptRequest(prompt_id="qa", version="v1", variables={"q": "如何申请报销"}),
+            strategy="cost")
+
+    t = metered.tracker.totals()
+    print(f"  totals: reqs={t['reqs']} tokens={t['tokens']} "
+          f"actual={t['actual']} listed={t['listed']} saved={t['saved']}")
+    print(f"  hit_rate={t['hit_rate']} save_rate={t['save_rate']}")
+    print(f"  by_provider={list(metered.tracker.by_provider())}")
+    print(f"  by_version={list(metered.tracker.by_version())}")
+    print()
+    print(metered.dashboard())
+
+    by_p, by_v, by_c = (metered.tracker.by_provider(), metered.tracker.by_version(),
+                        metered.tracker.by_cache())
+    assert_true(t["reqs"] == 4, f"4 requests tracked, got {t['reqs']}")
+    assert_true(t["hits"] == 1, f"exactly 1 cache hit, got {t['hits']}")
+    assert_true(t["hit_rate"] == 0.25, f"hit_rate should be 0.25, got {t['hit_rate']}")
+    # 缓存 ROI：命中实付 0 → 实付必须严格小于名义，省下的正好等于命中那条的名义成本
+    assert_true(t["actual"] < t["listed"], "cache hit must make actual < listed")
+    assert_true(t["saved"] > 0 and t["save_rate"] > 0, "saved/save_rate must be positive")
+    assert_true(by_c["hit"]["actual"] == 0.0, "hit rows must cost nothing")
+    # 多维归因：两个模型 + 两个 prompt 版本都要能拆出来
+    assert_true({"cheap-fast", "premium-strong"} <= set(by_p), f"both models tracked: {list(by_p)}")
+    assert_true({"qa@v1", "qa@v2"} <= set(by_v), f"both versions tracked: {list(by_v)}")
+    # 归因正确性：quality 策略那条必须落在 premium-strong 头上
+    assert_true(by_p["premium-strong"]["reqs"] == 1, "quality strategy → 1 premium req")
+    assert_true(by_v["qa@v1"]["reqs"] == 3, f"v1 has 3 reqs, got {by_v['qa@v1']['reqs']}")
+    print("  cost dashboard: PASS（采集/聚合/渲染闭环，缓存 ROI 可量化）")
+
+
+def demo_cost_edge_cases() -> None:
+    section("16) Cost Dashboard 边界：空账本 / 无 tag / 命中记账口径")
+    # 空账本不能炸——渲染层最低契约
+    empty = render_dashboard(CostTracker())
+    print(f"  empty tracker → {empty.splitlines()[1].strip()}")
+    assert_true("no data" in empty, "empty tracker must render gracefully")
+    assert_true(CostTracker().totals()["reqs"] == 0, "empty totals must not divide by zero")
+
+    # 无 version_tag → 归到 (untagged)，不丢记录
+    tr = CostTracker()
+    tr.add_usage({"cost_usd": 0.01, "prompt_tokens": 5, "completion_tokens": 5}, "solo")
+    print(f"  untagged → by_version={list(tr.by_version())}")
+    assert_true("(untagged)" in tr.by_version(), "missing tag must bucket as (untagged)")
+
+    # 命中记账口径：listed 保留、actual=0、saved=listed
+    hit = record_from_usage(
+        {"cost_usd": 0.02, "cache": {"status": "hit"}, "prompt_tokens": 1}, "cheap-fast")
+    print(f"  hit record → listed={hit.listed_cost} actual={hit.actual_cost}")
+    assert_true(hit.listed_cost == 0.02 and hit.actual_cost == 0.0, "hit: listed kept, actual 0")
+    tr.add(hit)
+    assert_true(tr.totals()["saved"] == 0.02, "saved must equal hit's listed cost")
+    print("  edge cases: PASS")
+
+
 def main() -> int:
     print("P2 AI Gateway · Router + Semantic Cache + Prompt Version acceptance")
     demo_strategies()
@@ -336,10 +411,13 @@ def main() -> int:
     demo_prompt_ab()
     demo_prompt_immutable()
     demo_prompt_full_chain()
-    section("DONE · P2 Router + Semantic Cache + Prompt Version green")
+    demo_cost_dashboard()
+    demo_cost_edge_cases()
+    section("DONE · P2 Router + Cache + Prompt Version + Cost Dashboard green")
     print("  Router: cost/latency/quality/balanced + 硬过滤 + 报错 + chat 契约")
     print("  Cache: 近似命中省调用 + 阈值防误命中 + TTL 失效 + 可套 Router 外层")
     print("  Prompt: 应用层版本治理(SDK 复用模块02) + Gateway 侧不透明 version_tag 归因")
+    print("  Cost: 最外层采集 + provider/version/cache 多维聚合 + 缓存 ROI 量化")
     print("EXIT:0")
     return 0
 
