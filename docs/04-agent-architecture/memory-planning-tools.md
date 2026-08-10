@@ -57,7 +57,7 @@ MCP / Skills：标准协议与流程打包见模块 00；本层先把「注册-�
 
 **多 agent 不该用时**：单步可答、无专业分工、延迟预算紧——协调与汇总本身吃 token。
 
-其他拓扑（笔记级）：Planner-Executor（规划者与执行者分离）、并行 fan-out 再 merge。
+其他拓扑与 Workflow 原语（Sequential/Parallel/Router/Loop、Planner-Executor、协调税）见独立笔记 [`workflow-multi-agent.md`](workflow-multi-agent.md)。
 
 ## 与 P3 的桥
 

@@ -70,7 +70,8 @@ Agent = LLM + Memory + Planning + Tool + Observation + Reflection
 | 主题 | 笔记 | 实验断言要点 |
 |------|------|----------------|
 | Loop / ReAct | [`agent-loop.md`](agent-loop.md) | 8821 可退四步；max_turns 强制停 |
-| Memory / Plan / Tool / 多 Agent | [`memory-planning-tools.md`](memory-planning-tools.md) | 三记忆；Plan vs ReAct；Schema 校验；路由 |
+| Memory / Plan / Tool | [`memory-planning-tools.md`](memory-planning-tools.md) | 三记忆；Plan vs ReAct；Schema 校验 |
+| Workflow / 多智能体 | [`workflow-multi-agent.md`](workflow-multi-agent.md) | Sequential·Parallel·Router·Loop；Supervisor-Worker；闲聊单 worker 砍协调税 |
 
 ```bash
 cd experiments/mini-agent && python3 agent_demo.py
@@ -98,5 +99,5 @@ cd experiments/mini-agent && python3 agent_demo.py
 
 - [x] 能默画 Agent 循环并解释每一步（`agent-loop.md`）
 - [x] 搭出可运行的 Mini Agent（`experiments/mini-agent/agent_demo.py`）
-- [x] 能讲清三种记忆与多 agent 拓扑（`memory-planning-tools.md`）
-- [x] 能回答上面全部面试题（对照笔记 + 实验轨迹）
+- [x] 能讲清三种记忆与多 agent 拓扑（`memory-planning-tools.md` + `workflow-multi-agent.md`）
+- [x] 能回答上面全部面试题（对照三篇笔记 + 实验轨迹）
