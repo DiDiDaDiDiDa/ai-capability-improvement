@@ -166,8 +166,8 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 | 01 基础           | ✅ 完成  | 2026-07-07 ~ 07-08 | 分词/Embedding/Transformer/推理采样，4篇笔记+4实验；依赖已声明（`self-attention`/`sampling`/`tokenizer-bpe` 各带 `requirements.txt`） |
 | 02 提示词          | ✅ 完成  | 2026-07-14 | Day5~8 笔记+实验+模板库+Prompt Registry SDK |
 | 03 RAG          | ✅ 完成  | 2026-07-15 ~ 07-17 | L1–L6 笔记+实验全绿（Hybrid/Rerank/Query/Context/GraphRAG） |
-| 04 Agent        | ✅ 完成  | 2026-07-17 | Mini Agent 实验+双笔记；Loop/Memory/Plan/Tool/多Agent 全绿；P3 M1 起点 |
-| 05 微调评估         | ✅ 完成  | 2026-07-20 | LoRA/QLoRA/选型 + BLEU/ROUGE/Judge；`experiments/finetune-eval/` 全绿 |
+| 04 Agent        | ✅ 完成  | 2026-07-17 ~ 08-10 | Mini Agent 实验+三笔记（Loop / Memory·Plan·Tool / Workflow·多智能体）；Loop/Memory/Plan/Tool/多Agent 全绿；P3 M1 起点 |
+| 05 微调评估         | ✅ 完成  | 2026-07-20 ~ 08-10 | 三笔记：LoRA·选型 / DPO·量化 / BLEU·Judge；`experiments/finetune-eval/` 全绿 |
 | 06 AI Infra     | ✅ 完成  | 2026-07-22 ~ 08-10 | Serving 全绿：`experiments/ai-infra/serving_demo.py`（KV/Continuous Batching/PagedAttention/Speculative）。Gateway/Cache/Multi-Provider·Cost 全部随 P2 落代码——九大能力（Router/Cache/Prompt/Cost/Fallback+Retry/CircuitBreaker/Guardrail/RateLimit/Observability）均可运行 |
 | P1 RAG 平台       | ✅ 完成  | 2026-07-15 ~ 07-17 | M1–M4：`projects/p1-enterprise-rag/app.py` 可运行；Gateway Provider 可热替换 |
 | P2 Gateway      | ✅ 完成  | 2026-07-23 ~ 08-10 | **九大能力全部落代码**，`projects/p2-ai-gateway/app.py` **22 段全绿**：Model Router（四策略/硬过滤/报错/chat 契约）+ Semantic Cache（语义命中/阈值防误命中/TTL）+ Prompt Version（钉扎/alias 回滚/A/B/不可变）+ Cost Dashboard（最外层采集/三维聚合/缓存 ROI）+ Fallback+Retry（瞬时重试/耗尽降级/错误分类/全挂兜底）+ Circuit Breaker（closed·open·half-open 三态/滑窗跳闸/半开探针）+ Guardrail（注入 block/PII mask/审计）+ RateLimit·Quota（令牌桶/配额核销/多租户）+ Observability（span·trace_id/分位数延迟/错误计数）。第 22 段验证 8 层装饰器同一 `chat` 契约、归因字段全链路咬合。复用 P1 `LLMProvider`+`embed_text`、模块02 `PromptRegistry`；分层解耦 |
