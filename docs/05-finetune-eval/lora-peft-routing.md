@@ -57,7 +57,8 @@ DPO:   (x, y_w, y_l) 直接偏好对 → 省 RM+RL，对齐更轻
 - **SFT** 学「标准答案长什么样」  
 - **DPO/RLHF** 学「两个答案里哪个更好」——解决的是偏好，不是往权重里塞百科  
 
-实验：SFT proxy loss good≪bad；DPO score 在 chosen logp 更高时 >0.5。
+实验：SFT proxy loss good≪bad；DPO score 在 chosen logp 更高时 >0.5。  
+流程深账与 INT8/INT4 量化见 [`dpo-quantization.md`](dpo-quantization.md)。
 
 ## 选型决策表（面试抓手）
 

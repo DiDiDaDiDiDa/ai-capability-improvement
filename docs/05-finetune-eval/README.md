@@ -54,7 +54,8 @@ AI Infra 岗位不用深入训练细节，但要能答清楚选型决策：**什
 
 | 主题 | 笔记 | 实验断言要点 |
 |------|------|----------------|
-| LoRA / QLoRA / 选型 / SFT·DPO | [`lora-peft-routing.md`](lora-peft-routing.md) | 可训比 3.125%；QLoRA 存储更小；选型 5 案；DPO 偏好分 |
+| LoRA / QLoRA / 选型 | [`lora-peft-routing.md`](lora-peft-routing.md) | 可训比 3.125%；QLoRA 存储更小；选型 5 案 |
+| DPO / RLHF / INT8·INT4 | [`dpo-quantization.md`](dpo-quantization.md) | SFT loss good≪bad；DPO 正序 score>0.5；INT8 存基座账 + RMSE |
 | BLEU / ROUGE / Judge | [`eval-metrics-judge.md`](eval-metrics-judge.md) | good≻bad；位置偏差可翻盘；swap 恢复正确 |
 
 ```bash
@@ -82,5 +83,6 @@ cd experiments/finetune-eval && python3 finetune_eval_demo.py
 
 - [x] 能清晰讲出 Prompt/RAG/FineTune 选型逻辑
 - [x] 理解 LoRA/QLoRA 原理并跑过一次实验（stdlib 教学版；真 PEFT 可后续挂 GPU）
+- [x] 能讲清 SFT→DPO/RLHF 流程与 INT8/INT4 量化账（`dpo-quantization.md`）
 - [x] 能设计一套基础评测流程
-- [x] 能回答上面全部面试题（对照双笔记 + 实验）
+- [x] 能回答上面全部面试题（对照三篇笔记 + 实验）
