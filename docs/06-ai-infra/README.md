@@ -58,18 +58,19 @@ Serving（vLLM / SGLang / Triton）
 ## 建议产出物
 
 - [x] 一份 vLLM / PagedAttention 原理笔记 + 机制账（[`serving-batching-paged.md`](serving-batching-paged.md) + `experiments/ai-infra/serving_demo.py`）
-- [ ] 项目 P2：Gateway 增强版（Router + Semantic Cache + Fallback + Cost Dashboard）
-- [ ] 一个 Semantic Cache 最小实现（embedding 相似度命中）
+- [x] 项目 P2：Gateway 增强版（Router + Semantic Cache + Fallback + Cost Dashboard + 九大能力；[`projects/p2-ai-gateway/`](../../projects/p2-ai-gateway/)，`app.py` 22 段全绿）
+- [x] 一个 Semantic Cache 最小实现（embedding 相似度命中；[`p2gateway/semantic_cache.py`](../../projects/p2-ai-gateway/p2gateway/semantic_cache.py) + [`semantic-cache.md`](../../projects/p2-ai-gateway/semantic-cache.md)）
 
 ## 笔记与实验
 
 | 主题 | 笔记 | 实验断言要点 |
 |------|------|----------------|
 | Serving 四机制 | [`serving-batching-paged.md`](serving-batching-paged.md) | KV 162x；连续 batch 利用率 34%→87% 吞吐 2.57x；分页省 65% 显存；投机 3.70x |
-| Gateway / Cache / Router | 落到项目 P2（进行中） | — |
+| Gateway / Cache / Router | 已完成：[`projects/p2-ai-gateway/`](../../projects/p2-ai-gateway/)（九大能力代码 + 项目侧笔记） | Router 四策略；Semantic Cache 命中/阈值/TTL；Fallback+CB；Cost ROI；Guardrail/RateLimit/Observability 全链路 |
 
 ```bash
 python3 experiments/ai-infra/serving_demo.py
+python3 projects/p2-ai-gateway/app.py   # 九大能力 22 段，期望 EXIT:0
 ```
 
 ## 面试高频题（出口自测）
@@ -93,5 +94,5 @@ python3 experiments/ai-infra/serving_demo.py
 
 - [x] 能画出 Client → Gateway → Provider → Serving 全链路（见全景链路图）
 - [x] 能讲清 Continuous Batching / PagedAttention / Speculative Decoding（笔记 + 实验全绿）
-- [ ] 完成 P2 Gateway 增强版
-- [ ] 能回答上面全部面试题（Serving 三题已覆盖，Gateway/Cache 随 P2 补齐）
+- [x] 完成 P2 Gateway 增强版（`projects/p2-ai-gateway/app.py` 九大能力 22 段全绿）
+- [x] 能回答上面全部面试题（Serving 对照笔记+实验；Gateway/Cache/Router 对照 P2 九篇能力笔记 + `app.py`）
