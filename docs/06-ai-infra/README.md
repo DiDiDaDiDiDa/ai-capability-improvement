@@ -66,7 +66,7 @@ Serving（vLLM / SGLang / Triton）
 | 主题 | 笔记 | 实验断言要点 |
 |------|------|----------------|
 | Serving 四机制 | [`serving-batching-paged.md`](serving-batching-paged.md) | KV 162x；连续 batch 利用率 34%→87% 吞吐 2.57x；分页省 65% 显存；投机 3.70x |
-| Gateway / Cache / Router | 已完成：[`projects/p2-ai-gateway/`](../../projects/p2-ai-gateway/)（九大能力代码 + 项目侧笔记） | Router 四策略；Semantic Cache 命中/阈值/TTL；Fallback+CB；Cost ROI；Guardrail/RateLimit/Observability 全链路 |
+| Gateway / Cache / Router | [`gateway-cache-router.md`](gateway-cache-router.md)（总览）+ [`projects/p2-ai-gateway/`](../../projects/p2-ai-gateway/)（九大能力代码 + 项目侧细账） | Router 四策略；Semantic Cache 命中/阈值/TTL；Fallback+CB；Cost ROI；Guardrail/RateLimit/Observability 全链路；`app.py` 22 段 EXIT:0 |
 
 ```bash
 python3 experiments/ai-infra/serving_demo.py
