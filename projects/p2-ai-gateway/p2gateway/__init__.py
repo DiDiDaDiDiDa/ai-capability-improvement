@@ -18,6 +18,22 @@ from .prompt_client import (
     RegistryError,
     Template,
 )
+from .resilience import (
+    AllProvidersFailed,
+    FatalError,
+    ResilientProvider,
+    RetryableError,
+)
+from .circuit_breaker import BreakerRegistry, CircuitBreaker
+from .guardrail import GuardedProvider, GuardResult, mask_text
+from .rate_limit import (
+    Quota,
+    QuotaExceeded,
+    RateLimitedProvider,
+    RateLimitExceeded,
+    TokenBucket,
+)
+from .observability import MetricsRegistry, Span, TracedProvider
 
 __all__ = [
     "ModelProfile",
@@ -40,4 +56,21 @@ __all__ = [
     "MeteredProvider",
     "record_from_usage",
     "render_dashboard",
+    "ResilientProvider",
+    "RetryableError",
+    "FatalError",
+    "AllProvidersFailed",
+    "CircuitBreaker",
+    "BreakerRegistry",
+    "GuardedProvider",
+    "GuardResult",
+    "mask_text",
+    "RateLimitedProvider",
+    "RateLimitExceeded",
+    "QuotaExceeded",
+    "TokenBucket",
+    "Quota",
+    "TracedProvider",
+    "MetricsRegistry",
+    "Span",
 ]
