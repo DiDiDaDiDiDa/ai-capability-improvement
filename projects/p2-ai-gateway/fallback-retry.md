@@ -1,6 +1,7 @@
 # Fallback + Retry 设计说明：Provider 故障兜底
 
-> 所属项目：P2 · AI Gateway ｜ 对应模块 06 ｜ 状态：设计说明（未落代码）
+> 所属项目：P2 · AI Gateway ｜ 对应模块 06 ｜ 状态：**已落代码**
+> （实现 `p2gateway/resilience.py`，验收 `app.py` 第 17 段）
 
 ## 一句话总结
 

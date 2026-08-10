@@ -1,6 +1,7 @@
 # Observability 设计说明：Tracing + Metrics
 
-> 所属项目：P2 · AI Gateway ｜ 对应模块 06 ｜ 状态：设计说明（未落代码）
+> 所属项目：P2 · AI Gateway ｜ 对应模块 06 ｜ 状态：**已落代码**
+> （实现 `p2gateway/observability.py`，验收 `app.py` 第 21 段；全栈 8 层咬合见第 22 段）
 
 ## 一句话总结
 

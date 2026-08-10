@@ -12,13 +12,11 @@
 - [x] Semantic Cache：语义相似命中，省调用 — `p2gateway/semantic_cache.py`（embedding+余弦阈值命中 + TTL 失效 + 容量淘汰 + 阈值防误命中；装饰器套 Router 外层）｜实现详解见 [`semantic-cache.md`](semantic-cache.md)
 - [x] Prompt Version 管理（**应用层 SDK**，复用模块 02）— `p2gateway/prompt_client.py`（直接 import 模块02 `PromptRegistry`：版本钉扎 + alias 发布回滚 + A/B 稳定分桶 + 版本不可变）；**Gateway 只收不透明 `version_tag` 做归因，不碰 prompt 内容**｜分层详解见 [`prompt-version.md`](prompt-version.md)
 - [x] Token Cost Dashboard：成本可视化 — `p2gateway/cost_dashboard.py`（`MeteredProvider` 最外层采集 + `CostTracker` 按 provider/version/cache 多维聚合 + `render_dashboard` 文本面板；量化「缓存省了多少钱」）｜实现详解见 [`cost-dashboard.md`](cost-dashboard.md)
-以下 5 项交付物为**设计说明（未落代码）**——讲清机制与踩坑点，不做实现：
-
-- [x] Guardrail：输入输出安全 / 敏感信息 Masking ｜设计说明见 [`guardrail.md`](guardrail.md)
-- [x] Fallback + Retry：Provider 故障兜底 ｜设计说明见 [`fallback-retry.md`](fallback-retry.md)
-- [x] Circuit Breaker：熔断保护 ｜设计说明见 [`circuit-breaker.md`](circuit-breaker.md)
-- [x] Rate Limit / Quota：限流与配额 ｜设计说明见 [`rate-limit-quota.md`](rate-limit-quota.md)
-- [x] Observability：Tracing + Metrics ｜设计说明见 [`observability.md`](observability.md)
+- [x] Fallback + Retry：Provider 故障兜底 — `p2gateway/resilience.py`（`ResilientProvider`：瞬时错误指数退避重试 + 重试耗尽 Fallback 换候选 + RetryableError/FatalError 错误分类 + 全挂抛 AllProvidersFailed；回填 `usage.resilience`）｜实现详解见 [`fallback-retry.md`](fallback-retry.md)
+- [x] Circuit Breaker：熔断保护 — `p2gateway/circuit_breaker.py`（`CircuitBreaker` closed→open→half-open 三态机 + 滑动窗口失败率跳闸 + 冷却半开探针恢复；每 Provider 一个 breaker，与 Fallback/Router 咬合）｜实现详解见 [`circuit-breaker.md`](circuit-breaker.md)
+- [x] Guardrail：输入输出安全 / 敏感信息 Masking — `p2gateway/guardrail.py`（`GuardedProvider` 套最外层：输入注入 block + 输入/输出 PII 正则 mask + 命中回填 `usage.guardrail`；密钥整体遮蔽、联系方式保留局部）｜实现详解见 [`guardrail.md`](guardrail.md)
+- [x] Rate Limit / Quota：限流与配额 — `p2gateway/rate_limit.py`（`RateLimitedProvider`：Token Bucket 限流 + Quota 预估占额/事后真实核销 + 按 key 多租户隔离；回填 `usage.limit` 余量）｜实现详解见 [`rate-limit-quota.md`](rate-limit-quota.md)
+- [x] Observability：Tracing + Metrics — `p2gateway/observability.py`（`TracedProvider` 每层开 span 共享 trace_id + `MetricsRegistry` 计数/分位数延迟 p50/p95/p99 + 复用 usage 做 labels；回填 `usage.trace`）｜实现详解见 [`observability.md`](observability.md)
 
 ## 目标架构
 

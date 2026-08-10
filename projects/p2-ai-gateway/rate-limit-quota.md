@@ -1,6 +1,7 @@
 # Rate Limit / Quota 设计说明：限流与配额
 
-> 所属项目：P2 · AI Gateway ｜ 对应模块 06 ｜ 状态：设计说明（未落代码）
+> 所属项目：P2 · AI Gateway ｜ 对应模块 06 ｜ 状态：**已落代码**
+> （实现 `p2gateway/rate_limit.py`，验收 `app.py` 第 20 段）
 
 ## 一句话总结
 
