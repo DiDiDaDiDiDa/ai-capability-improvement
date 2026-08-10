@@ -168,9 +168,9 @@ BLEU / ROUGE / LLM Judge      Gateway / Cache / Router
 | 03 RAG          | ✅ 完成  | 2026-07-15 ~ 07-17 | L1–L6 笔记+实验全绿（Hybrid/Rerank/Query/Context/GraphRAG） |
 | 04 Agent        | ✅ 完成  | 2026-07-17 | Mini Agent 实验+双笔记；Loop/Memory/Plan/Tool/多Agent 全绿；P3 M1 起点 |
 | 05 微调评估         | ✅ 完成  | 2026-07-20 | LoRA/QLoRA/选型 + BLEU/ROUGE/Judge；`experiments/finetune-eval/` 全绿 |
-| 06 AI Infra     | 🟡 进行中 | 2026-07-22 ~ 08-06 | Serving 全绿：`experiments/ai-infra/serving_demo.py`（KV/Continuous Batching/PagedAttention/Speculative）。Gateway/Cache/Multi-Provider·Cost 随 P2 推进，其中 Router/Cache/Cost 已落代码；余下取决于 P2 是收尾还是继续落代码 |
+| 06 AI Infra     | ✅ 完成  | 2026-07-22 ~ 08-10 | Serving 全绿：`experiments/ai-infra/serving_demo.py`（KV/Continuous Batching/PagedAttention/Speculative）。Gateway/Cache/Multi-Provider·Cost 全部随 P2 落代码——九大能力（Router/Cache/Prompt/Cost/Fallback+Retry/CircuitBreaker/Guardrail/RateLimit/Observability）均可运行 |
 | P1 RAG 平台       | ✅ 完成  | 2026-07-15 ~ 07-17 | M1–M4：`projects/p1-enterprise-rag/app.py` 可运行；Gateway Provider 可热替换 |
-| P2 Gateway      | 🟡 收尾中 | 2026-07-23 ~ 08-06 | **已落代码 4 项**，`projects/p2-ai-gateway/app.py` **16 段全绿**：Model Router（四策略选型/能力硬过滤/无候选报错/chat 契约）+ Semantic Cache（语义命中省调用/阈值防误命中/TTL）+ Prompt Version（版本钉扎/alias 发布回滚/A/B 稳定分桶/不可变/全链路）+ **Token Cost Dashboard**（最外层采集/provider·version·cache 三维聚合/缓存 ROI 量化）。**仅设计说明 5 项**（Guardrail / Fallback+Retry / Circuit Breaker / Rate Limit·Quota / Observability，各有 `.md`，无代码）。复用 P1 `LLMProvider`+`embed_text`、模块02 `PromptRegistry`；Prompt 治理落在应用层 SDK，Gateway 只做 version_tag 归因（分层解耦）|
+| P2 Gateway      | ✅ 完成  | 2026-07-23 ~ 08-10 | **九大能力全部落代码**，`projects/p2-ai-gateway/app.py` **22 段全绿**：Model Router（四策略/硬过滤/报错/chat 契约）+ Semantic Cache（语义命中/阈值防误命中/TTL）+ Prompt Version（钉扎/alias 回滚/A/B/不可变）+ Cost Dashboard（最外层采集/三维聚合/缓存 ROI）+ Fallback+Retry（瞬时重试/耗尽降级/错误分类/全挂兜底）+ Circuit Breaker（closed·open·half-open 三态/滑窗跳闸/半开探针）+ Guardrail（注入 block/PII mask/审计）+ RateLimit·Quota（令牌桶/配额核销/多租户）+ Observability（span·trace_id/分位数延迟/错误计数）。第 22 段验证 8 层装饰器同一 `chat` 契约、归因字段全链路咬合。复用 P1 `LLMProvider`+`embed_text`、模块02 `PromptRegistry`；分层解耦 |
 | P3 Coding Agent | ✅ 完成  | 2026-07-20 ~ 07-22 | M1–M5 全绿：`projects/p3-mini-coding-agent/app.py`；read/search/edit/run+沙箱、红→绿 reflection、M4 repo-map+TF-IDF 检索、M5 MCP 动态注册+Gateway 热替换 |
 
 状态标记：⬜ 未开始 / 🟡 进行中 / ✅ 完成
@@ -190,5 +190,5 @@ done
 # 依赖实验须用各自 .venv，见 experiments/README.md
 ```
 
-最近一次全量复核结果：P1/P2/P3 均 `EXIT=0`（P2 16 段、P3 7 段断言全过），
+最近一次全量复核结果（2026-08-10）：P1/P2/P3 均 `EXIT=0`（P2 22 段、P3 7 段断言全过），
 实验 17 个脚本 `OK=17 FAIL=0`，1 个需大模型下载的手动跑。
